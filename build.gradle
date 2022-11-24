@@ -1,6 +1,7 @@
 plugins {
     id 'fabric-loom' version '0.12-SNAPSHOT'
     id 'org.jetbrains.kotlin.jvm' version '1.7.21'
+    id 'maven-publish'
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
@@ -50,5 +51,17 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'xyz.chaoten'
+            artifactId = 'xi-addon'
+            version = '1.0.0'
+
+            from components.java
+        }
     }
 }
